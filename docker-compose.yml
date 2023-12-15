@@ -1,0 +1,27 @@
+version: '3'
+
+services:
+  frontend:
+    build:
+      context: ./my-online-store
+    ports:
+      - "8080:8080"
+    depends_on:
+      - backend
+
+  backend:
+    build:
+      context: ./adb/adb_back
+    ports:
+      - "8080:8080"
+    depends_on:
+      - mongodb
+
+  mongodb:
+    build:
+      context: ./adb/adb_back
+    image: mongo:latest
+    container_name: "mongodb"
+    ports:
+      - 27070:27017
+    
